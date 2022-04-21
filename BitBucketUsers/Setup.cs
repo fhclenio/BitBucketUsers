@@ -4,25 +4,24 @@
     {
         public string AccessToken { get; set; }
         public string Path { get; set; }
+        public string LogPath { get; set; } = AppDomain.CurrentDomain.BaseDirectory + "log.txt";
         public void Init()
         {
-            AccessToken = @"DmuUtW5CYYUzuk6YSLGiVzvoVTUT1x_vFvaifAQUO0XXw12Jr2gifXIaWqggKGKDLhY1I-rohdNrIkYFigRqmGvR0GFxrJjYs7uukF_9qMY--3_lbUK1_4g7";
-            Path = @"C:\dev\users.txt";
-            //GetAuthorization();
-            //GetPath();
+            GetAuthorization();
+            GetPath();
         }
         private void GetAuthorization()
         {
-            while (AccessToken == null)
+            while (string.IsNullOrEmpty(AccessToken))
             {
                 Console.Write("Type Access Token: ");
 
                 try
                 {
                     AccessToken = Console.ReadLine();
-                    if (AccessToken == null)
+                    if (string.IsNullOrEmpty(AccessToken))
                     {
-                        throw new Exception("Access Token can't be null.");
+                        throw new Exception("Access Token can't be empty.");
                     }
                 }
                 catch (Exception ex)
@@ -33,20 +32,25 @@
         }
         private void GetPath()
         {
-            while (Path == null)
+            while (string.IsNullOrEmpty(Path))
             {
                 Console.Write("Type path: ");
 
                 try
                 {
                     Path = Console.ReadLine();
-                    if (Path == null)
+                    if (string.IsNullOrEmpty(Path))
                     {
-                        throw new Exception("Path can't be null.");
+                        throw new Exception("Path can't be empty.");
+                    }
+                    if (!File.Exists(Path))
+                    {
+                        throw new Exception($"File at path '{Path}' doesn't exists.");
                     }
                 }
                 catch (Exception ex)
                 {
+                    Path = string.Empty;
                     Console.WriteLine(ex.Message);
                 }
             }
