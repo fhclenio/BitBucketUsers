@@ -7,11 +7,8 @@
         public string LogPath { get; set; } = AppDomain.CurrentDomain.BaseDirectory + "log.txt";
         public void Init()
         {
-
-            AccessToken = @"t--mgdxXE0iZbd_X5bCV9Nf9uV4szWCDWSK9nz9nlIBBBOTZAc0DczBpmmefGgMLHE6bJOfSwZSEjhQS9MdveR4uAXmZXobLvMeSktj8_yCgBvnR-lXBYLMG";
-            Path = @"C:\dev\users.txt";
-            //GetAuthorization();
-            //GetPath();
+            GetAuthorization();
+            GetPath();
         }
         private void GetAuthorization()
         {
