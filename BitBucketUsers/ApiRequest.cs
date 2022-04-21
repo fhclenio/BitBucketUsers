@@ -18,7 +18,19 @@ namespace BitBucketUsers
                     TimeSpan diff = DateTime.Now.Subtract(File.GetLastAccessTime(setup.LogPath));
 
                     if (diff.TotalSeconds <= 60)
-                        throw new Exception("Application cannot run again because it was ran the last time less than 60 seconds ago.");
+                    {
+                        Console.WriteLine($"Application cannot make requests to the API because it was ran the last time less than 60 seconds ago.");
+                        Console.WriteLine($"Waiting { 60 - Convert.ToInt32(diff.TotalSeconds) } seconds before making requests again.");
+
+                        Console.Write("Waiting ");
+                        for (int a =  60 - Convert.ToInt32(diff.TotalSeconds) ; a >= 0; a--)
+                        {
+                            Console.CursorLeft = 8;
+                            Console.Write("{0}", a);
+                            await Task.Delay(TimeSpan.FromSeconds(1));
+                        }
+                        Console.WriteLine();
+                    }
                 }
                 List<string> lines = new List<string>();
                 using (StreamReader reader = new StreamReader(setup.Path))
