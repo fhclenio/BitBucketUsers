@@ -53,7 +53,7 @@ namespace BitBucketUsers
                         Console.WriteLine("URL: " + urlAtual);
                         Console.WriteLine("Usuário sendo recuperado: " + line);
 
-                        HttpResponseMessage response = await client.GetAsync($"users/{ line }?access_token={ setup.AccessToken }");
+                        HttpResponseMessage response = await client.GetAsync($"users/{ line }");
                         if (response.IsSuccessStatusCode)
                         {
                             User user = await response.Content.ReadAsAsync<User>();
