@@ -7,7 +7,7 @@
         public string LogPath { get; set; } = AppDomain.CurrentDomain.BaseDirectory + "log.txt";
         public void Init()
         {
-            GetAuthorization();
+            //GetAuthorization();
             GetPath();
         }
         private void GetAuthorization()
