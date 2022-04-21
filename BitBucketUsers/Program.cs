@@ -31,17 +31,28 @@ static async Task RunAsync()
         foreach (string line in lines)
         {
             string urlAtual = client.BaseAddress.ToString() + $"users/{ line }";
-            Console.WriteLine("Url atual: " + urlAtual);
-            Console.WriteLine("Usuario sendo recuperado: " + line);
+            Console.WriteLine("URL: " + urlAtual);
+            Console.WriteLine("Usuário sendo recuperado: " + line);
 
             HttpResponseMessage response = await client.GetAsync($"users/{ line }?access_token={ setup.AccessToken }");
             if (response.IsSuccessStatusCode)
             {
                 User user = await response.Content.ReadAsAsync<User>();
+                string logPath = AppDomain.CurrentDomain.BaseDirectory + "log.txt";
+                if (!File.Exists(logPath))
+                    await File.WriteAllTextAsync(logPath, user.ToString());
+                else
+                {
+                    using (StreamWriter file = new(logPath, append: true))
+                    {
+                        await file.WriteLineAsync("\n" + user.ToString());
+                    }
+                }
             }
             Console.WriteLine("Status code: " + response.StatusCode.ToString());
             await Task.Delay(TimeSpan.FromSeconds(5));
         }
 
+        Console.WriteLine("End of execution.");
     }
 }

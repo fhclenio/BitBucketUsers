@@ -6,7 +6,7 @@
         public string Path { get; set; }
         public void Init()
         {
-            AccessToken = @"L5MyV63zJWj-9ZktcLbpJKueUhN6AM3q2lGPocYbfCV06kfDN0-U_qTzOxgdqQ6RJ2aVjqE52rMshArNU4OPX1Ef6hHONxhu8e8jKcYav0SsbhgxJl_SE-_k";
+            AccessToken = @"DmuUtW5CYYUzuk6YSLGiVzvoVTUT1x_vFvaifAQUO0XXw12Jr2gifXIaWqggKGKDLhY1I-rohdNrIkYFigRqmGvR0GFxrJjYs7uukF_9qMY--3_lbUK1_4g7";
             Path = @"C:\dev\users.txt";
             //GetAuthorization();
             //GetPath();
@@ -15,7 +15,7 @@
         {
             while (AccessToken == null)
             {
-                Console.WriteLine("Type Access Token: ");
+                Console.Write("Type Access Token: ");
 
                 try
                 {
@@ -35,7 +35,7 @@
         {
             while (Path == null)
             {
-                Console.WriteLine("Type Path: ");
+                Console.Write("Type path: ");
 
                 try
                 {
