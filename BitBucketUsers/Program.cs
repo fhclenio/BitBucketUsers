@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using BitBucketUsers;
+
+Setup setup = new Setup();
+setup.Init();
+
+ApiRequest.RunAsync(setup).Wait();
